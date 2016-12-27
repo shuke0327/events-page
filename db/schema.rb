@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227093318) do
+ActiveRecord::Schema.define(version: 20161227150540) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "user_id"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20161227093318) do
     t.integer  "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "ancestor_id"
+    t.string   "ancestor_class"
+    t.integer  "actor_id"
+    t.string   "action_desc"
+    t.string   "action_label"
+    t.string   "action_type",       default: "common"
+    t.string   "invoke_item_class"
+    t.integer  "invoke_item_id"
+    t.string   "extentions"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -52,8 +66,14 @@ ActiveRecord::Schema.define(version: 20161227093318) do
   create_table "todos", force: :cascade do |t|
     t.string   "content"
     t.datetime "due_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "creator_id"
+    t.integer  "assignee_id"
+    t.integer  "completor_id"
+    t.boolean  "completed",    default: false
+    t.datetime "completed_at"
+    t.boolean  "soft_deleted", default: false
   end
 
   create_table "users", force: :cascade do |t|
