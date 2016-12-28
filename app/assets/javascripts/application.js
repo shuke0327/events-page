@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+this.App = {};
+
+App.cable = ActionCable.createConsumer();  

@@ -35,7 +35,8 @@ class Event < ApplicationRecord
   belongs_to :ancestor, polymorphic: true
   belongs_to :invoke_item, polymorphic: true
   belongs_to :actor, class_name: "User", foreign_key: :actor_id
-  
+
+  default_scope -> {order("created_at DESC")}
   store :extentions,
       accessors: [
           :old_assignee_id,
@@ -46,6 +47,10 @@ class Event < ApplicationRecord
           :comment_content
       ],
       coder: JSON
+
+  def team
+    self.ancestor.team
+  end
 
   # show the event information in a similarway to the view for test
   def report

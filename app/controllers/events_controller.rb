@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
-  DEFAULT_DEVENTS_amount = 50
+  before_action :authenticate_user!
+  DEFAULT_EVENT_AMOUNT = 50
   def index
-    @events = Event.select(params[:events_amount] || DEFAULT_DEVENTS_COUNT)
+    @team = Team.find(params[:team_id]) if params[:team_id].present?
+    @events = Event.limit(params[:limit] || DEFAULT_EVENT_AMOUNT)
   end
 end
