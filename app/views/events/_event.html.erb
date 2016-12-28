@@ -1,21 +1,29 @@
+
 <div class="event event-<%= event.action_type %> event-<%= event.action_label %>">
   <div class="event-main">
     <div class="event-head">
       <a class="event-created-at" data-created-at="<%= event.created_at%>" href="#"><%= event.created_at.strftime("%m-%d-%H:%M")%></a>
       <span class="event-actor">
-        <a href="/members/c822723ec82a4b8a8b2df9f108fe2b4d" class="link-member" target="_blank"><%= event.actor.name %></a>
+        <%= link_to "#",class: "from", target: "_blank" do %>
+          <img alt="<%= event.actor.name %>" class="avatar" src="https://tower.im/assets/default_avatars/path.jpg">
+        <% end %>
+         <%= link_to event.actor.name, "#user_path", class: "link-member", target: "_blank" %>
       </span>
       <span class="event-action">
         <%= event.action_desc %>
       </span>
+      <% if event.action_type == "common" %>
+        <span class="event-text">
+        <a href="#"><%= event.invoke_item.content %></a>
+        </span>
+    </div>
+      <% elsif event.action_type=="comment" %>
       <span class="event-commentable">
-        <a href="/teams/53df6d1eebd44128b27669157942d7db/calendar_events/7c24eb487bd643b3a03e9e9d202feb5d" class="calendar_event-rest" data-stack="true">
-        <%= event.invoke_item.content %></a>
+        <a href="#"><%= event.invoke_item.content %></a>
       </span>
     </div>
-    <% if event.action_type=="comment" %>
       <div class="event-body">
-        <a href="/teams/53df6d1eebd44128b27669157942d7db/calendar_events/7c24eb487bd643b3a03e9e9d202feb5d#e0457e08ccc64f1a99f9325753f3a1e3" class="event-text" data-stack="true" title="abcdefg"><%= event.comment_content %></a>
+        <a href="#" class="event-text"><%= event.comment_id %></a>
       </div>
     <% end %>
   </div>
