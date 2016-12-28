@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227150540) do
+ActiveRecord::Schema.define(version: 20161228081053) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "user_id"
@@ -23,22 +23,24 @@ ActiveRecord::Schema.define(version: 20161227150540) do
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "creator_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
   create_table "events", force: :cascade do |t|
     t.integer  "ancestor_id"
-    t.string   "ancestor_class"
+    t.string   "ancestor_type"
     t.integer  "actor_id"
     t.string   "action_desc"
     t.string   "action_label"
-    t.string   "action_type",       default: "common"
-    t.string   "invoke_item_class"
+    t.string   "action_type",      default: "common"
+    t.string   "invoke_item_type"
     t.integer  "invoke_item_id"
     t.string   "extentions"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -72,8 +74,8 @@ ActiveRecord::Schema.define(version: 20161227150540) do
     t.integer  "assignee_id"
     t.integer  "completor_id"
     t.boolean  "completed",    default: false
-    t.datetime "completed_at"
     t.boolean  "soft_deleted", default: false
+    t.integer  "project_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,10 +91,9 @@ ActiveRecord::Schema.define(version: 20161227150540) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "team_id"
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
 end
