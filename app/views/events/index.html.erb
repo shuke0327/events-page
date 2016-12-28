@@ -1,11 +1,8 @@
 <%= provide(:title, "动态") %>
-<h1>用户动态</h1>
-<div class="row">
-  <div class="col-md-6 col-md-3">
-    <div id="event-main">   
-      <ul>
-       <%= render @events %>
-      </ul>
+<div class="container workspace simple-stack simple-stack-transition">
+  <div class="page page-root">
+    <div class="page-inner" id="page-events">
+      <%= render @events %>
     </div>
   </div>
 </div>

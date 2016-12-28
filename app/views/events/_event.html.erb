@@ -1,6 +1,7 @@
-<div class="event-main">
+<div class="event event-<%= event.action_type %> event-<%= event.action_label %>">
+  <div class="event-main">
     <div class="event-head">
-      <a class="event-created-at" data-created-at="<%= event.created_at%>" href="#event-#1234"><%= event.created_at.strftime("%m-%d-%H:%M")%></a>
+      <a class="event-created-at" data-created-at="<%= event.created_at%>" href="#"><%= event.created_at.strftime("%m-%d-%H:%M")%></a>
       <span class="event-actor">
         <a href="/members/c822723ec82a4b8a8b2df9f108fe2b4d" class="link-member" target="_blank"><%= event.actor.name %></a>
       </span>
@@ -13,9 +14,9 @@
       </span>
     </div>
     <% if event.action_type=="comment" %>
-    <div class="event-body">
-      <a href="/teams/53df6d1eebd44128b27669157942d7db/calendar_events/7c24eb487bd643b3a03e9e9d202feb5d#e0457e08ccc64f1a99f9325753f3a1e3" class="event-text" data-stack="true" title="abcdefg"><%= event.comment_content %></a>
-        
-    </div>
+      <div class="event-body">
+        <a href="/teams/53df6d1eebd44128b27669157942d7db/calendar_events/7c24eb487bd643b3a03e9e9d202feb5d#e0457e08ccc64f1a99f9325753f3a1e3" class="event-text" data-stack="true" title="abcdefg"><%= event.comment_content %></a>
+      </div>
     <% end %>
   </div>
+</div>
