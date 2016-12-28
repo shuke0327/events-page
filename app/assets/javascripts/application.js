@@ -15,6 +15,3 @@
 //= require turbolinks
 //= require_tree .
 
-this.App = {};
-
-App.cable = ActionCable.createConsumer();  
