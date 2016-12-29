@@ -33,9 +33,18 @@ class Event < ApplicationRecord
   # TODO: for project
 
   # ancestor could be a: project, calendar, or week_report
-  belongs_to :ancestor, polymorphic: true
+  belongs_to :ancestor, polymorphic: true 
+
+  #invoke_item could be but not limited to:
+  # todo, calendar_event
   belongs_to :invoke_item, polymorphic: true
   belongs_to :actor, class_name: "User", foreign_key: :actor_id
+
+  # descripiton of the event in plain word
+  validates  :action_desc, presence: true
+
+  # label the event for use in views
+  validates  :action_label, presence: true
 
   default_scope -> {order("created_at DESC")}
   store :extentions,

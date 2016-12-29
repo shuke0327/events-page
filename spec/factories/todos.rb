@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :todo do
-    content "MyString"
+    content "Test Todo"
+    creator :user
+    project :project
   end
 end

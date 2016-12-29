@@ -11,5 +11,6 @@ class User < ApplicationRecord
   has_many :completed_todos, class_name: "Todo", foreign_key: "completor_id"
   has_many :memberships
   has_many :teams, through: :memberships
+  has_many :events, foreign_key: "actor_id"
   validates :name, presence: true
 end

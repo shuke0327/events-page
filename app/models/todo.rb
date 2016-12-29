@@ -4,7 +4,9 @@ class Todo < ApplicationRecord
   belongs_to :project
   has_many :events, as: :invoke_item
   belongs_to :creator,   class_name: "User", foreign_key: :creator_id
-  
+  validates :content, presence: true
+  validates :creator_id, presence: true
+  validates :project_id, presence: true
 
   after_create_commit do
     event_data = {
@@ -15,10 +17,10 @@ class Todo < ApplicationRecord
   end
 
   def soft_deleted_by(actor)
-    if update_attributes(soft_destroy: true)
+    if update_attributes(soft_deleted: true)
       event_data = {
         action_desc: Event::DESC_TODO_DEL,
-        action_label: Event::LABLE_TODO_DEL
+        action_label: Event::LABEL_TODO_DEL
       }
       build_event(actor.id, event_data)
     end
@@ -36,7 +38,7 @@ class Todo < ApplicationRecord
     self
   end
 
-  def reopen_by(actor)
+  def reopened_by(actor)
     return self unless completed?
     if update_attributes(completed: false, completor_id:nil)
       event_data = {
@@ -49,6 +51,7 @@ class Todo < ApplicationRecord
   end
 
   def assigned_to(actor, new_assignee)
+    # the old_assignee could be nil
     old_assignee_id = assignee_id
     new_assignee_id = new_assignee.id
     if update_attributes(assignee_id: new_assignee_id)
