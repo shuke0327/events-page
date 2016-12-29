@@ -4,6 +4,8 @@ class Todo < ApplicationRecord
   belongs_to :project
   has_many :events, as: :invoke_item
   belongs_to :creator,   class_name: "User", foreign_key: :creator_id
+  
+
   after_create_commit do
     event_data = {
       action_desc: Event::DESC_TODO_ADD,

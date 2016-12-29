@@ -14,4 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
 
+$(window).scroll(function () { 
+   url = $('.load-more a[ref=next]').attr('href')
+   if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+    
+   }
+});

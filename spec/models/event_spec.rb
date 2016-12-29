@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
+  
   it "is valid with a firstname, lastname and email" do
-    expect(2 + 1).to eq 3
   end
   it "is invalid without a firstname"
   it "is invalid without a lastname"
