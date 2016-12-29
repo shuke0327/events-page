@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   DEFAULT_EVENT_AMOUNT = 50
 
   def index
-    @team = Team.find(params[:team_id]) if params[:team_id].present?
+    @team = Team.find(params[:team_id]) if params[:team_id]
     @limit = params[:per_page] || DEFAULT_EVENT_AMOUNT
     page = params[:page] || 1
     @events = Event.paginate(page: page, per_page: @limit)

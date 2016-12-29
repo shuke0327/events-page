@@ -13,4 +13,12 @@ class User < ApplicationRecord
   has_many :teams, through: :memberships
   has_many :events, foreign_key: "actor_id"
   validates :name, presence: true
+
+  def can_access_project!(project)
+    self.projects << project
+  end
+
+  def set_team!(team)
+    self.teams << team
+  end
 end

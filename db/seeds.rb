@@ -5,26 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name:  "Example User",
+main_user = User.create!(name:  "Example User",
              email: "example@tower.im",
              password:              "foobar123",
              password_confirmation: "foobar123")
 
 team = Team.create!(name: "Test Team")
+main_user.set_team!(team)
+
 project = team.projects.create!(name: "Test Project")
+main_user.can_access_project!(project)
 
 10.times do |n|
   name  = Faker::Name.last_name
   email = "example-#{n+1}@tower.im"
   password = "password"
-  User.create!(name:  name,
+  fake_user = User.create!(name:  name,
                email: email,
                password:              password,
                password_confirmation: password)
+  fake_user.set_team!(team)
 end
 
 users = User.order(:created_at).take(6)
-
+users.each { |user| user.can_access_project!(project)}
 # create todos
 10.times do
   content = Faker::Lorem.word
