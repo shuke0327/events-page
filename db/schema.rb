@@ -34,24 +34,24 @@ ActiveRecord::Schema.define(version: 20161228081053) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "ancestor_id"
-    t.string   "ancestor_type"
+    t.string   "ancestor_class"
     t.integer  "actor_id"
     t.string   "action_desc"
     t.string   "action_label"
-    t.string   "action_type",      default: "common"
-    t.string   "invoke_item_type"
+    t.string   "action_type",       default: "common"
+    t.string   "invoke_item_class"
     t.integer  "invoke_item_id"
     t.string   "extentions"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "team_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "team_id"
     t.index ["team_id"], name: "index_projects_on_team_id", using: :btree
   end
 
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20161228081053) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "owner_id"
   end
 
   create_table "todolists", force: :cascade do |t|
@@ -71,6 +70,7 @@ ActiveRecord::Schema.define(version: 20161228081053) do
   create_table "todos", force: :cascade do |t|
     t.string   "content"
     t.datetime "due_at"
+    t.integer  "project_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "creator_id"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 20161228081053) do
     t.integer  "completor_id"
     t.boolean  "completed",    default: false
     t.boolean  "soft_deleted", default: false
-    t.integer  "project_id"
   end
 
   create_table "users", force: :cascade do |t|
