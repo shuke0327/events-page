@@ -5,5 +5,6 @@ class Project < ApplicationRecord
   has_many :events, as: :ancestor
   has_many :todos
   validates :team_id, presence: true
+  validates :name, presence: true
 
 end

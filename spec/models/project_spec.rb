@@ -12,6 +12,10 @@ require 'rails_helper'
     expect(project.errors[:name]).to include("can't be blank")
   end
 
-  it "is invalid without a team_id"
+  it "is invalid without a team_id" do
+    project = Project.new(name:"test Project")
+    project.valid?
+    expect(project.errors[:team_id]).to include("can't be blank")
+  end
 end
 

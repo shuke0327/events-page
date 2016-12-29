@@ -9,4 +9,7 @@ class User < ApplicationRecord
   has_many :assigned_todos, class_name: "Todo", foreign_key: "assignee_id"
   has_many :created_todos, class_name: "Todo", foreign_key: "creator_id"
   has_many :completed_todos, class_name: "Todo", foreign_key: "completor_id"
+  has_many :memberships
+  has_many :teams, through: :memberships
+  validates :name, presence: true
 end

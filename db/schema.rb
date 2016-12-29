@@ -34,16 +34,16 @@ ActiveRecord::Schema.define(version: 20161229064154) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "ancestor_id"
-    t.string   "ancestor_class"
+    t.string   "ancestor_type"
     t.integer  "actor_id"
     t.string   "action_desc"
     t.string   "action_label"
-    t.string   "action_type",       default: "common"
-    t.string   "invoke_item_class"
+    t.string   "action_type",      default: "common"
+    t.string   "invoke_item_type"
     t.integer  "invoke_item_id"
     t.string   "extentions"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "memberships", id: false, force: :cascade do |t|

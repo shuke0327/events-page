@@ -37,8 +37,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
 end
 
+gem 'faker',  '1.6.6'
+
 group :test do
-  gem 'faker'
   gem 'capybara', '~> 2.11'
   gem 'database_cleaner'
   gem 'selenium-webdriver'

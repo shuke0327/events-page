@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+
   # event descriptions and event label 
   LABEL_COMMENT_ADD = "comment-add"
   DESC_COMMENT_ADD = "回复了"
@@ -27,9 +28,9 @@ class Event < ApplicationRecord
   DESC_DOCUMENT_EDIT = "编辑了文档"
   LABEL_DOCUMENT_EDIT = "document-edit"
 
-  # for todolist
+  # TODO: for todolist
 
-  # for project
+  # TODO: for project
 
   # ancestor could be a: project, calendar, or week_report
   belongs_to :ancestor, polymorphic: true
