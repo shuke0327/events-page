@@ -14,11 +14,31 @@ class User < ApplicationRecord
   has_many :events, foreign_key: "actor_id"
   validates :name, presence: true
 
-  def can_access_project!(project)
+  def set_access_to_project!(project)
     self.projects << project
+  end
+
+  def can_access_project?(project)
+    self.projects.include? project
   end
 
   def set_team!(team)
     self.teams << team
   end
+
+  def accessable_projects_in(team)
+    projects.where(team_id: team.id)
+  end
+
+  # TODO: need to be reafactor later!!!
+  def default_team
+    if teams.present?
+      teams.first
+    else
+      team = Team.create(name: "Demo Team")
+      set_team!(team)
+      return team
+    end
+  end
+
 end

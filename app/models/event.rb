@@ -58,6 +58,15 @@ class Event < ApplicationRecord
       ],
       coder: JSON
 
+  delegate :team, to: :ancestor
+  delegate :team_id, to: :ancestor
+
+  # need to be refactored for more ancestors
+  def self.ancestor_events(ancestors)
+    self.where("ancestor_type = :type AND ancestor_id in (:projects_ids)",
+                           type: "Project", projects_ids: ancestors.pluck(:id))
+  end
+
   def team
     self.ancestor.team
   end

@@ -1,7 +1,7 @@
 <div class="header">
     <h1 class="logo">
         <a href="javascript:;" class="link-team-menu">
-            <span class="name">shuke0327</span>
+            <span class="name"><%= current_user.default_team.name || "Tower" %></span>
             <i class="twr twr-caret-down"></i>
         </a>
     </h1>
@@ -11,7 +11,7 @@
             <a href="#">项目</a>
         </li>
         <li class="active" id="nav-events">
-            <a href="#">动态</a>
+            <%= link_to '动态', events_page_path %>
         </li>
         <li class="" id="nav-calendar">
             <a href="#">日历</a>
