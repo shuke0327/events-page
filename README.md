@@ -1,24 +1,26 @@
-# README
+# Events Page Test
+--------------
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+1. git clone https://github.com/shuke0327/events-page.git
+2. cd events-page
+3. bundle install 
+4. rails db:create
+   rails db:migrate
+   rails db:seed
 
-Things you may want to cover:
+5. rails s
 
-* Ruby version
 
-* System dependencies
+## demo website
+or, the live demo shows at:
 
-* Configuration
+http://events-page-demo.herokuapp.com
 
-* Database creation
+user: example_user@tower.im
+password: foobar123
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## version
+Ruby 2.2
+Rails 5.0.0.1
